@@ -1,0 +1,83 @@
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e2e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.intro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.intro-box {
+    background: #27293d;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    border: 3px solid #f0a500;
+}
+
+h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #f0a500;
+}
+
+.quote {
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+
+input {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #f0a500;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    background: #1e1e2e;
+    color: white;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    background: #f0a500;
+    color: black;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ffcc00;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .intro-box {
+        width: 95%;
+    }
+}

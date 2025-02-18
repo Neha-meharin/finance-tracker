@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHero - Savings</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        .savings-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .savings-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .savings-header h1 {
+            color: #8c52ff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .savings-header p {
+            font-size: 0.7rem;
+            color: #bcbcbc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .savings-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        
+        .savings-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: #292836;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3e3b4f;
+        }
+        
+        .card h2 {
+            font-size: 1rem;
+            color: #8c52ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h2 span {
+            margin-left: 10px;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sidebar-box {
+            background-color: #292836;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3e3b4f;
+        }
+        
+        .sidebar-box h3 {
+            font-size: 0.8rem;
+            color: #8c52ff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #3e3b4f;
+        }
+        
+        .savings-goals {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .goal-item {
+            background-color: #1e1e28;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #3e3b4f;
+        }
+        
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .goal-title {
+            font-size: 0.8rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .goal-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .goal-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .goal-actions button {
+            background: none;
+            border: none;
+            color: #8c52ff;
+            cursor: pointer;
+            font-size: 0.7rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .goal-actions button:hover {
+            background-color: rgba(140, 82, 255, 0.2);
+        }
+        
+        .goal-amount {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #bcbcbc;
+            margin-bottom: 10px;
+        }
+        
+        .goal-progress {
+            width: 100%;
+            height: 8px;
+            background-color: #3e3b4f;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .goal-progress-fill {
+            height: 100%;
+            background-color: #8c52ff;
+            border-radius: 4px;
+        }
+        
+        .goal-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .create-goal-btn {
+            background-color: #8c52ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            align-self: flex-end;
+        }
+        
+        .create-goal-btn:hover {
+            background-color: #7440e0;
+        }
+        
+        .create-goal-btn span {
+            margin-left: 5px;
+        }
+        
+        .savings-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .summary-card {
+            flex: 1;
+            min-width: 150px;
+            background-color: #1e1e28;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #3e3b4f;
+            text-align: center;
+        }
+        
+        .summary-title {
+            font-size: 0.7rem;
+            color: #bcbcbc;
+            margin-bottom: 10px;
+        }
+        
+        .summary-value {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .summary-change {
+            font-size: 0.6rem;
+            color: #4BB543;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .negative-change {
+            color: #FF3333;
+        }
+        
+        .vault-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .vault-card {
+            flex: 1;
+            min-width: 150px;
+            background-color: #1e1e28;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #3e3b4f;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .vault-card:hover {
+            transform: translateY(-3px);
+            border-color: #8c52ff;
+        }
+        
+        .vault-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #8c52ff;
+        }
+        
+        .vault-title {
+            font-size: 0.7rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        
+        .vault-description {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+            margin-bottom: 10px;
+        }
+        
+        .vault-action {
+            font-size: 0.6rem;
+            color: #8c52ff;
+            align-self: flex-end;
+        }
+        
+        .savings-tip {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        
+        .savings-tip:hover {
+            background-color: #1e1e28;
+        }
+        
+        .tip-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #ffc857;
+        }
+        
+        .tip-content h4 {
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .tip-content p {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .savings-chart {
+            width: 100%;
+            height: 200px;
+            margin-top: 15px;
+            background-color: #1e1e28;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #3e3b4f;
+        }
+        
+        .savings-progress {
+            border-top: 1px solid #3e3b4f;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+        
+        .milestone {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .milestone-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #3e3b4f;
+            font-size: 0.7rem;
+        }
+        
+        .milestone-completed {
+            background-color: #8c52ff;
+            color: white;
+        }
+        
+        .milestone-info {
+            flex-grow: 1;
+        }
+        
+        .milestone-title {
+            font-size: 0.7rem;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+        
+        .milestone-description {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .milestone-reward {
+            font-size: 0.6rem;
+            color: #ffc857;
+            margin-left: 15px;
+        }
+        
+        .milestone-progress {
+            position: absolute;
+            left: 15px;
+            height: 100%;
+            width: 1px;
+            background-color: #3e3b4f;
+            z-index: 0;
+        }
+        
+        .milestone-container {
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .savings-history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #3e3b4f;
+        }
+        
+        .history-date {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .history-amount {
+            font-size: 0.7rem;
+            color: #4BB543;
+        }
+        
+        .history-withdrawal {
+            color: #FF3333;
+        }
+        
+        @media (max-width: 768px) {
+            .savings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-card, .vault-card {
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="mario-removebg-preview.png" alt="PocketHero Logo">
+            <span>PocketHero</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index1.html">🏠 Home</a></li>
+            <li><a href="index3.html">🎮 Expense tracker</a></li>
+            <!--<li><a href="#">📅 Challenges</a></li>--->
+            <li><a href="savings.html" class="active">💰 Savings</a></li>
+            <li><a href="community.html">🤝 Community</a></li>
+        </ul>
+        <div class="user-info">
+            <img src="pixel-art-drawing-vector-graphics-royalty-free-2d-coin-sprite.jpg" class="avatar" alt="User Avatar">
+            <div class="xp-bar">
+                <span class="xp-text">Level: <span id="level-value">0</span> | XP: <span id="xp-value">10</span>/<span id="xp-next-level">100</span></span>
+                <div class="xp-progress"><div id="xp-fill"></div></div>
+            </div>
+            <button id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="savings-container">
+        <div class="savings-header">
+            <h1>💰 PocketHero Savings</h1>
+            <p>Track your savings goals, monitor your progress, and earn rewards for building your financial future!</p>
+        </div>
+        
+        <div class="savings-grid">
+            <div class="savings-main">
+                <div class="card">
+                    <h2>📊 <span>Savings Summary</span></h2>
+                    <div class="savings-summary">
+                        <div class="summary-card">
+                            <div class="summary-title">Total Savings</div>
+                            <div class="summary-value">$2,541.88</div>
+                            <div class="summary-change">↑ 12.5% this month</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-title">Monthly Goal</div>
+                            <div class="summary-value">$350</div>
+                            <div class="summary-change">$221.32 saved</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-title">Average</div>
+                            <div class="summary-value">$283.54</div>
+                            <div class="summary-change">↑ $37.12 vs last month</div>
+                        </div>
+                    </div>
+                    <div class="savings-chart">
+                        <span style="color: #bcbcbc; font-size: 0.7rem;">Savings Chart (Coming Soon)</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>🏆 <span>Savings Goals</span></h2>
+                    <div class="savings-goals">
+                        <div class="goal-item">
+                            <div class="goal-header">
+                                <div class="goal-title">
+                                    <span class="goal-icon">🏠</span>
+                                    Down Payment Fund
+                                </div>
+                                <div class="goal-actions">
+                                    <button title="Add funds">+</button>
+                                    <button title="Edit goal">✏️</button>
+                                </div>
+                            </div>
+                            <div class="goal-amount">
+                                <span>$5,678.43 of $20,000</span>
+                                <span>28.4%</span>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="goal-progress-fill" style="width: 28.4%"></div>
+                            </div>
+                            <div class="goal-meta">
+                                <span>Target date: Dec 2026</span>
+                                <span>$423 monthly contribution</span>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-item">
+                            <div class="goal-header">
+                                <div class="goal-title">
+                                    <span class="goal-icon">🏝️</span>
+                                    Vacation Fund
+                                </div>
+                                <div class="goal-actions">
+                                    <button title="Add funds">+</button>
+                                    <button title="Edit goal">✏️</button>
+                                </div>
+                            </div>
+                            <div class="goal-amount">
+                                <span>$1,850.67 of $3,000</span>
+                                <span>61.7%</span>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="goal-progress-fill" style="width: 61.7%"></div>
+                            </div>
+                            <div class="goal-meta">
+                                <span>Target date: Jul 2025</span>
+                                <span>$150 monthly contribution</span>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-item">
+                            <div class="goal-header">
+                                <div class="goal-title">
+                                    <span class="goal-icon">💻</span>
+                                    New Laptop
+                                </div>
+                                <div class="goal-actions">
+                                    <button title="Add funds">+</button>
+                                    <button title="Edit goal">✏️</button>
+                                </div>
+                            </div>
+                            <div class="goal-amount">
+                                <span>$987.23 of $1,200</span>
+                                <span>82.3%</span>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="goal-progress-fill" style="width: 82.3%"></div>
+                            </div>
+                            <div class="goal-meta">
+                                <span>Target date: May 2025</span>
+                                <span>$75 monthly contribution</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="create-goal-btn">➕ <span>Create New Goal</span></button>
+                </div>
+                
+                <div class="card">
+                    <h2>🔐 <span>Savings Vaults</span></h2>
+                    <div class="vault-options">
+                        <div class="vault-card">
+                            <div class="vault-icon">🪙</div>
+                            <div class="vault-title">Round-Up Savings</div>
+                            <div class="vault-description">Automatically save spare change from every transaction</div>
+                            <div class="vault-action">Activate →</div>
+                        </div>
+                        <div class="vault-card">
+                            <div class="vault-icon">🔄</div>
+                            <div class="vault-title">Recurring Savings</div>
+                            <div class="vault-description">Set up automatic transfers on your schedule</div>
+                            <div class="vault-action">Set up →</div>
+                        </div>
+                        <div class="vault-card">
+                            <div class="vault-icon">🎯</div>
+                            <div class="vault-title">Goal Boosters</div>
+                            <div class="vault-description">Accelerate your savings with surprise challenges</div>
+                            <div class="vault-action">Try now →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-box">
+                    <h3>🏆 Savings Achievements</h3>
+                    <div class="milestone-container">
+                        <div class="milestone-progress"></div>
+                        <div class="milestone">
+                            <div class="milestone-icon milestone-completed">✓</div>
+                            <div class="milestone-info">
+                                <div class="milestone-title">First $500 Saved</div>
+                                <div class="milestone-description">You've started your savings journey!</div>
+                            </div>
+                            <div class="milestone-reward">+25 XP</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-icon milestone-completed">✓</div>
+                            <div class="milestone-info">
+                                <div class="milestone-title">3 Month Streak</div>
+                                <div class="milestone-description">Saved money for 3 months in a row</div>
+                            </div>
+                            <div class="milestone-reward">+50 XP</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-icon milestone-completed">✓</div>
+                            <div class="milestone-info">
+                                <div class="milestone-title">First Goal Met</div>
+                                <div class="milestone-description">Successfully completed your first savings goal</div>
+                            </div>
+                            <div class="milestone-reward">+75 XP</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-icon">4</div>
+                            <div class="milestone-info">
+                                <div class="milestone-title">$2,500 Milestone</div>
+                                <div class="milestone-description">Reached $2,500 in total savings</div>
+                            </div>
+                            <div class="milestone-reward">+100 XP</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-icon">5</div>
+                            <div class="milestone-info">
+                                <div class="milestone-title">Savings Master</div>
+                                <div class="milestone-description">Save consistently for 6 months straight</div>
+                            </div>
+                            <div class="milestone-reward">+150 XP</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-box">
+                    <h3>💡 Quick Savings Tips</h3>
+                    <div class="savings-tips">
+                        <div class="savings-tip">
+                            <div class="tip-icon">💰</div>
+                            <div class="tip-content">
+                                <h4>50/30/20 Rule</h4>
+                                <p>Allocate 50% of your income to needs, 30% to wants, and 20% to savings and debt repayment.</p>
+                            </div>
+                        </div>
+                        <div class="savings-tip">
+                            <div class="tip-icon">🔄</div>
+                            <div class="tip-content">
+                                <h4>Automate Your Savings</h4>
+                                <p>Set up automatic transfers to your savings account right after payday.</p>
+                            </div>
+                        </div>
+                        <div class="savings-tip">
+                            <div class="tip-icon">📋</div>
+                            <div class="tip-content">
+                                <h4>Challenge Yourself</h4>
+                                <p>Try the 30-day no-spend challenge to boost your savings this month.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-box">
+                    <h3>📊 Recent Activity</h3>
+                    <div class="savings-history">
+                        <div class="savings-history-item">
+                            <div class="history-date">Feb 16, 2025</div>
+                            <div class="history-amount">+$75.00</div>
+                        </div>
+                        <div class="savings-history-item">
+                            <div class="history-date">Feb 12, 2025</div>
+                            <div class="history-amount">+$32.50</div>
+                        </div>
+                        <div class="savings-history-item">
+                            <div class="history-date">Feb 10, 2025</div>
+                            <div class="history-amount">+$50.00</div>
+                        </div>
+                        <div class="savings-history-item">
+                            <div class="history-date">Feb 05, 2025</div>
+                            <div class="history-amount history-withdrawal">-$150.00</div>
+                        </div>
+                        <div class="savings-history-item">
+                            <div class="history-date">Feb 01, 2025</div>
+                            <div class="history-amount">+$200.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize XP and level display
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get saved XP from localStorage or default to 10
+            const savedXP = localStorage.getItem('pocketHeroXP') ? 
+                parseInt(localStorage.getItem('pocketHeroXP')) : 10;
+            
+            // Calculate level based on XP
+            let currentLevel = 0;
+            const xpPerLevel = [100, 200, 300, 400, 500];
+            
+            let remainingXP = savedXP;
+            for (let i = 0; i < xpPerLevel.length; i++) {
+                if (remainingXP >= xpPerLevel[i]) {
+                    remainingXP -= xpPerLevel[i];
+                    currentLevel++;
+                } else {
+                    break;
+                }
+            }
+            
+            // Update the display
+            document.getElementById('level-value').textContent = currentLevel;
+            document.getElementById('xp-value').textContent = savedXP;
+            
+            // Calculate target XP for current level
+            const targetXP = currentLevel < xpPerLevel.length ? 
+                xpPerLevel[currentLevel] : xpPerLevel[xpPerLevel.length - 1];
+            document.getElementById('xp-next-level').textContent = targetXP;
+            
+            // Calculate previous level's total XP
+            let previousLevelTotalXP = 0;
+            for (let i = 0; i < currentLevel; i++) {
+                previousLevelTotalXP += xpPerLevel[i];
+            }
+            
+            // Calculate progress within current level
+            const levelXP = savedXP - previousLevelTotalXP;
+            const levelProgress = (levelXP / targetXP) * 100;
+            document.getElementById('xp-fill').style.width = `${Math.min(levelProgress, 100)}%`;
+            
+            // Add event listeners for vault cards
+            const vaultCards = document.querySelectorAll('.vault-card');
+            vaultCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.vault-title').textContent;
+                    alert(`${title} feature coming soon!`);
+                });
+            });
+            
+            // Mobile menu toggle
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Create goal button
+            document.querySelector('.create-goal-btn').addEventListener('click', function() {
+                alert('Create a new savings goal (feature coming soon)');
+            });
+            
+            // Goal action buttons
+            const goalButtons = document.querySelectorAll('.goal-actions button');
+            goalButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const goalTitle = this.closest('.goal-item').querySelector('.goal-title').textContent.trim();
+                    const action = this.title;
+                    alert(`${action} for ${goalTitle} (feature coming soon)`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHero</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="mario-removebg-preview.png" alt="PocketHero Logo">
+            <span>PocketHero</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index1.html">🏠 Home</a></li>
+            <li><a href="index3.html">🎮 Expense tracker</a></li>
+            <li><a href="savings.html">💰 Savings</a></li>
+            <li><a href="community.html">🤝 Community</a></li>
+        </ul>
+        <div class="user-info">
+            <img src="pixel-art-drawing-vector-graphics-royalty-free-2d-coin-sprite.jpg" class="avatar" alt="User Avatar">
+            <div class="xp-bar">
+                <span class="xp-text">Level: <span id="level-value">0</span> | XP: <span id="xp-value">10</span>/<span id="xp-next-level">100</span></span>
+                <div class="xp-progress"><div id="xp-fill"></div></div>
+            </div>
+            <button id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="box challenges">
+            <h2>🏆 Daily Challenges</h2>
+            <p>Complete challenges to earn XP and level up!</p>
+            <ul id="challenge-list">
+                <li>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="challenge1" data-xp="10">
+                        <label for="challenge1">💰 Save $10 Today</label>
+                        <span class="challenge-reward">+10 XP</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="challenge2" data-xp="25">
+                        <label for="challenge2">🍳 Cook at Home for a Day</label>
+                        <span class="challenge-reward">+25 XP</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="challenge-item">
+                        <input type="checkbox" id="challenge3" data-xp="15">
+                        <label for="challenge3">🛑 Skip Non-Essential Purchase</label>
+                        <span class="challenge-reward">+15 XP</span>
+                    </div>
+                </li>
+            </ul>
+            <button id="get-new-challenges" class="pixel-button">Get New Challenges</button>
+        </div>
+
+        <div class="box roadmap">
+            <h2>🎮 XP Level Roadmap</h2>
+            <div class="level-progress">
+                <div class="level-track">
+                    <div class="level-point achieved" data-level="0">
+                        <div class="level-marker">👶</div>
+                        <span>Newbie<br>L0</span>
+                    </div>
+                    <div class="level-point" data-level="1">
+                        <div class="level-marker">🌱</div>
+                        <span>Beginner<br>L1</span>
+                    </div>
+                    <div class="level-point" data-level="2">
+                        <div class="level-marker">📚</div>
+                        <span>Saver<br>L2</span>
+                    </div>
+                    <div class="level-point" data-level="3">
+                        <div class="level-marker">💰</div>
+                        <span>Money Manager<br>L3</span>
+                    </div>
+                    <div class="level-point" data-level="4">
+                        <div class="level-marker">🌟</div>
+                        <span>Financial Guru<br>L4</span>
+                    </div>
+                    <div class="level-point" data-level="5">
+                        <div class="level-marker">👑</div>
+                        <span>Budget Master<br>L5</span>
+                    </div>
+                </div>
+                <div class="progress-line">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+            <div class="level-rewards">
+                <h3>Level Rewards</h3>
+                <ul>
+                    <li><strong>Level 1:</strong> Unlock Budget Templates</li>
+                    <li><strong>Level 2:</strong> Unlock Basic Financial Tips</li>
+                    <li><strong>Level 3:</strong> Unlock Community Forums</li>
+                    <li><strong>Level 4:</strong> Unlock Premium Calculator Tools</li>
+                    <li><strong>Level 5:</strong> Unlock Personalized Financial Plan</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box features">
+            <h2>📊 Finance Tools</h2>
+            <ul>
+                <a style="text-decoration:none;color:white;" href="index3.html"><li>📊 Expense Tracker</li></a>
+                <a style="text-decoration:none;color:white;" href="savings.html"><li> 💰 Savings </li></a>
+                <a style="text-decoration:none;color:white;" href="insights.html"><li>📈 Insights</li></a>
+                <a style="text-decoration:none;color:white;" href="community.html"><li>🤝 Community</li></a>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentXP = 10;
+            let currentLevel = 0;
+            const xpPerLevel = [100, 200, 300, 400, 500]; // XP needed for each level
+            
+            // Initialize XP display
+            updateXPDisplay();
+            
+            // Challenge checkboxes
+            const checkboxes = document.querySelectorAll('#challenge-list input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        const xpGain = parseInt(this.dataset.xp);
+                        currentXP += xpGain;
+                        
+                        // Check if leveled up
+                        if (currentXP >= xpPerLevel[currentLevel]) {
+                            if (currentLevel < xpPerLevel.length) {
+                                currentLevel++;
+                                alert(`🎉 Congratulations! You've reached Level ${currentLevel}!`);
+                                
+                                // Update level points display
+                                updateLevelPoints();
+                            }
+                        }
+                        
+                        updateXPDisplay();
+                        
+                        // Disable the checkbox after completion
+                        this.disabled = true;
+                        this.parentElement.classList.add('completed');
+                    }
+                });
+            });
+            
+            // New challenges button
+            document.getElementById('get-new-challenges').addEventListener('click', function() {
+                const challenges = [
+                    { name: "📝 Track All Expenses Today", xp: 15 },
+                    { name: "🚶 Walk Instead of Drive/Ride", xp: 20 },
+                    { name: "🍱 Meal Prep for the Week", xp: 25 },
+                    { name: "💸 Negotiate a Bill Lower", xp: 30 },
+                    { name: "📱 No Online Shopping Today", xp: 15 },
+                    { name: "☕ Skip the Coffee Shop", xp: 10 },
+                    { name: "🧾 Review Monthly Subscriptions", xp: 20 }
+                ];
+                
+                // Reset challenge list
+                const challengeList = document.getElementById('challenge-list');
+                challengeList.innerHTML = '';
+                
+                // Get 3 random challenges
+                const shuffled = challenges.sort(() => 0.5 - Math.random());
+                const selectedChallenges = shuffled.slice(0, 3);
+                
+                // Add new challenges
+                selectedChallenges.forEach((challenge, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="challenge-item">
+                            <input type="checkbox" id="challenge${index+1}" data-xp="${challenge.xp}">
+                            <label for="challenge${index+1}">${challenge.name}</label>
+                            <span class="challenge-reward">+${challenge.xp} XP</span>
+                        </div>
+                    `;
+                    challengeList.appendChild(li);
+                });
+                
+                // Reattach event listeners to new checkboxes
+                const newCheckboxes = document.querySelectorAll('#challenge-list input[type="checkbox"]');
+                newCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            const xpGain = parseInt(this.dataset.xp);
+                            currentXP += xpGain;
+                            
+                            // Check if leveled up
+                            if (currentXP >= xpPerLevel[currentLevel]) {
+                                if (currentLevel < xpPerLevel.length) {
+                                    currentLevel++;
+                                    alert(`🎉 Congratulations! You've reached Level ${currentLevel}!`);
+                                    
+                                    // Update level points display
+                                    updateLevelPoints();
+                                }
+                            }
+                            
+                            updateXPDisplay();
+                            
+                            // Disable the checkbox after completion
+                            this.disabled = true;
+                            this.parentElement.classList.add('completed');
+                        }
+                    });
+                });
+            });
+            
+            // Update XP display and progress bar
+            function updateXPDisplay() {
+                document.getElementById('xp-value').textContent = currentXP;
+                document.getElementById('level-value').textContent = currentLevel;
+                
+                // Calculate target XP for current level
+                const targetXP = currentLevel < xpPerLevel.length ? xpPerLevel[currentLevel] : xpPerLevel[xpPerLevel.length - 1];
+                document.getElementById('xp-next-level').textContent = targetXP;
+                
+                // Calculate previous level's XP requirement
+                const previousLevelXP = currentLevel > 0 ? xpPerLevel[currentLevel - 1] : 0;
+                
+                // Calculate progress within current level
+                const levelProgress = ((currentXP - previousLevelXP) / (targetXP - previousLevelXP)) * 100;
+                document.getElementById('xp-fill').style.width = `${Math.min(levelProgress, 100)}%`;
+                
+                // Update roadmap progress
+                const overallProgress = (currentLevel / 5) * 100 + (levelProgress / 5);
+                document.getElementById('progress-fill').style.width = `${Math.min(overallProgress, 100)}%`;
+            }
+            
+            // Update level points on the roadmap
+            function updateLevelPoints() {
+                const levelPoints = document.querySelectorAll('.level-point');
+                levelPoints.forEach(point => {
+                    const level = parseInt(point.dataset.level);
+                    if (level <= currentLevel) {
+                        point.classList.add('achieved');
+                    } else {
+                        point.classList.remove('achieved');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

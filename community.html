@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHero - Community</title>
+    <link rel="stylesheet" href="styles1.css">
+    <script defer src="scriptcomm.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        .community-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        .community-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .community-header h1 {
+            color: #8c52ff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .community-header p {
+            font-size: 0.7rem;
+            color: #bcbcbc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        
+        .forums {
+            background-color: #292836;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3e3b4f;
+        }
+        
+        .forum-category {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3e3b4f;
+        }
+        
+        .forum-category h3 {
+            font-size: 0.9rem;
+            color: #8c52ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .forum-category h3 span {
+            margin-left: 10px;
+        }
+        
+        .forum-threads {
+            font-size: 0.7rem;
+        }
+        
+        .thread {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .thread:hover {
+            background-color: #1e1e28;
+        }
+        
+        .thread-icon {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        
+        .thread-info {
+            flex-grow: 1;
+        }
+        
+        .thread-title {
+            margin-bottom: 5px;
+        }
+        
+        .thread-meta {
+            display: flex;
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .thread-meta > div {
+            margin-right: 15px;
+        }
+        
+        .thread-stats {
+            display: flex;
+            align-items: center;
+            color: #bcbcbc;
+        }
+        
+        .stats-item {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+        
+        .stats-item span {
+            margin-left: 5px;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sidebar-box {
+            background-color: #292836;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #3e3b4f;
+        }
+        
+        .sidebar-box h3 {
+            font-size: 0.8rem;
+            color: #8c52ff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #3e3b4f;
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+        
+        .leaderboard-item:hover {
+            background-color: #1e1e28;
+        }
+        
+        .leaderboard-rank {
+            font-size: 0.7rem;
+            width: 25px;
+            text-align: center;
+            color: #ffc857;
+        }
+        
+        .leaderboard-user {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .leaderboard-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid #8c52ff;
+        }
+        
+        .leaderboard-name {
+            font-size: 0.6rem;
+        }
+        
+        .leaderboard-level {
+            font-size: 0.6rem;
+            margin-left: auto;
+            background-color: rgba(140, 82, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #8c52ff;
+        }
+        
+        .community-event {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .community-event:hover {
+            background-color: #1e1e28;
+        }
+        
+        .event-date {
+            background-color: #1e1e28;
+            padding: 5px;
+            border-radius: 4px;
+            text-align: center;
+            margin-right: 10px;
+            width: 40px;
+        }
+        
+        .event-month {
+            font-size: 0.5rem;
+            color: #8c52ff;
+        }
+        
+        .event-day {
+            font-size: 0.9rem;
+        }
+        
+        .event-info h4 {
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+        }
+        
+        .event-info p {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+        }
+        
+        .community-challenge {
+            background-color: #1e1e28;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #3e3b4f;
+        }
+        
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .challenge-title {
+            font-size: 0.8rem;
+            color: #8c52ff;
+        }
+        
+        .challenge-description {
+            font-size: 0.6rem;
+            color: #bcbcbc;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: #8c52ff;
+        }
+        
+        .challenge-xp {
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-xp span {
+            margin-left: 5px;
+            color: #ffc857;
+        }
+        
+        .challenge-participants {
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-participants span {
+            margin-left: 5px;
+        }
+        
+        .challenge-join {
+            display: inline-block;
+            font-size: 0.6rem;
+            background-color: #8c52ff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .challenge-join:hover {
+            background-color: #7440e0;
+        }
+        
+        .community-create {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        
+        .create-post {
+            background-color: #8c52ff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .create-post:hover {
+            background-color: #7440e0;
+        }
+        
+        .create-post span {
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="mario-removebg-preview.png" alt="PocketHero Logo">
+            <span>PocketHero</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index1.html">🏠 Home</a></li>
+            <li><a href="index3.html">🎮 Expense tracker</a></li>
+            <!--<li><a href="#">📅 Challenges</a></li>--->
+            <li><a href="savings.html">💰 Savings</a></li>
+            <li><a href="community.html" class="active">🤝 Community</a></li>
+        </ul>
+        <div class="user-info">
+            <img src="pixel-art-drawing-vector-graphics-royalty-free-2d-coin-sprite.jpg" class="avatar" alt="User Avatar">
+            <div class="xp-bar">
+                <span class="xp-text">Level: <span id="level-value">0</span> | XP: <span id="xp-value">10</span>/<span id="xp-next-level">100</span></span>
+                <div class="xp-progress"><div id="xp-fill"></div></div>
+            </div>
+            <button id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="community-container">
+        <div class="community-header">
+            <h1>🤝 PocketHero Community</h1>
+            <p>Connect with fellow budgeters, share tips, ask questions, and participate in community challenges to level up together!</p>
+        </div>
+        
+        <div class="community-create">
+            <button class="create-post">✏️ <span>Create New Post</span></button>
+        </div>
+        
+        <div class="community-grid">
+            <div class="forums">
+                <div class="forum-category">
+                    <h3>📚 <span>Financial Education</span></h3>
+                    <div class="forum-threads">
+                        <div class="thread">
+                            <div class="thread-icon">📊</div>
+                            <div class="thread-info">
+                                <div class="thread-title">Budgeting 101: Getting Started Guide</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by FinanceWizard</div>
+                                    <div class="thread-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>328</span></div>
+                                <div class="stats-item">💬 <span>42</span></div>
+                            </div>
+                        </div>
+                        <div class="thread">
+                            <div class="thread-icon">💰</div>
+                            <div class="thread-info">
+                                <div class="thread-title">Investment Options for Beginners</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by InvestSmart</div>
+                                    <div class="thread-time">1 day ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>215</span></div>
+                                <div class="stats-item">💬 <span>28</span></div>
+                            </div>
+                        </div>
+                        <div class="thread">
+                            <div class="thread-icon">📈</div>
+                            <div class="thread-info">
+                                <div class="thread-title">How to Use the PocketHero Expense Tracker</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by AppMaster</div>
+                                    <div class="thread-time">3 days ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>542</span></div>
+                                <div class="stats-item">💬 <span>67</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-category">
+                    <h3>💡 <span>Tips & Strategies</span></h3>
+                    <div class="forum-threads">
+                        <div class="thread">
+                            <div class="thread-icon">🛒</div>
+                            <div class="thread-info">
+                                <div class="thread-title">Smart Shopping Hacks to Save Money</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by ShoppingQueen</div>
+                                    <div class="thread-time">5 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>187</span></div>
+                                <div class="stats-item">💬 <span>23</span></div>
+                            </div>
+                        </div>
+                        <div class="thread">
+                            <div class="thread-icon">🍳</div>
+                            <div class="thread-info">
+                                <div class="thread-title">Meal Prep Ideas Under $50/week</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by FrugalChef</div>
+                                    <div class="thread-time">2 days ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>312</span></div>
+                                <div class="stats-item">💬 <span>45</span></div>
+                            </div>
+                        </div>
+                        <div class="thread">
+                            <div class="thread-icon">🏡</div>
+                            <div class="thread-info">
+                                <div class="thread-title">How I Saved for My First Home</div>
+                                <div class="thread-meta">
+                                    <div class="thread-author">by HomeOwnerAt27</div>
+                                    <div class="thread-time">1 week ago</div>
+                                </div>
+                            </div>
+                            <div class="thread-stats">
+                                <div class="stats-item">👁️ <span>587</span></div>
+                                <div class="stats-item">💬 <span>72</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-category">
+                    <h3>🎮 <span>Gamification Challenges</span></h3>
+                    <div class="forum-threads">
+                        <div class="community-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-icon">🚀</div>
+                                <div class="challenge-title">30-Day No Spend Challenge</div>
+                            </div>
+                            <div class="challenge-description">
+                                Commit to 30 days of not spending money on non-essentials. Track your progress, share tips, and see how much you can save!
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-xp">🏆 <span>100 XP</span></div>
+                                <div class="challenge-participants">👥 <span>247 participants</span></div>
+                            </div>
+                            <div class="challenge-join">Join Challenge</div>
+                        </div>
+                        
+                        <div class="community-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-icon">🏆</div>
+                                <div class="challenge-title">Debt Crusher Challenge</div>
+                            </div>
+                            <div class="challenge-description">
+                                Pay off at least $100 in debt this month. Share your strategy and progress with the community!
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-xp">🏆 <span>75 XP</span></div>
+                                <div class="challenge-participants">👥 <span>183 participants</span></div>
+                            </div>
+                            <div class="challenge-join">Join Challenge</div>
+                        </div>
+                        
+                        <div class="community-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-icon">💰</div>
+                                <div class="challenge-title">Spare Change Millionaire</div>
+                            </div>
+                            <div class="challenge-description">
+                                Save all your spare change for a month. Round up transactions and transfer the difference to savings.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-xp">🏆 <span>50 XP</span></div>
+                                <div class="challenge-participants">👥 <span>315 participants</span></div>
+                            </div>
+                            <div class="challenge-join">Join Challenge</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-box">
+                    <h3>🏆 Leaderboard</h3>
+                    <div class="leaderboard">
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-rank">1</div>
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">SavingsMaster</div>
+                            </div>
+                            <div class="leaderboard-level">Lvl 15</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-rank">2</div>
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">BudgetHero</div>
+                            </div>
+                            <div class="leaderboard-level">Lvl 14</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-rank">3</div>
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">FrugalQueen</div>
+                            </div>
+                            <div class="leaderboard-level">Lvl 12</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-rank">4</div>
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">MoneyWizard</div>
+                            </div>
+                            <div class="leaderboard-level">Lvl 10</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-rank">5</div>
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">YourUsername</div>
+                            </div>
+                            <div class="leaderboard-level">Lvl 0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-box">
+                    <h3>📅 Upcoming Events</h3>
+                    <div class="events">
+                        <div class="community-event">
+                            <div class="event-date">
+                                <div class="event-month">FEB</div>
+                                <div class="event-day">20</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Investing for Beginners Workshop</h4>
+                                <p>Live webinar | 7:00 PM EST</p>
+                            </div>
+                        </div>
+                        <div class="community-event">
+                            <div class="event-date">
+                                <div class="event-month">FEB</div>
+                                <div class="event-day">25</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Budget Buddies Meetup</h4>
+                                <p>Virtual | 6:30 PM EST</p>
+                            </div>
+                        </div>
+                        <div class="community-event">
+                            <div class="event-date">
+                                <div class="event-month">MAR</div>
+                                <div class="event-day">03</div>
+                            </div>
+                            <div class="event-info">
+                                <h4>Debt Freedom Strategy Session</h4>
+                                <p>Virtual | 8:00 PM EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-box">
+                    <h3>👑 Top Contributors</h3>
+                    <div class="leaderboard">
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">FinanceWizard</div>
+                            </div>
+                            <div class="leaderboard-level">532 Posts</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">FrugalChef</div>
+                            </div>
+                            <div class="leaderboard-level">438 Posts</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="leaderboard-user">
+                                <img src="/api/placeholder/30/30" class="leaderboard-avatar" alt="User avatar">
+                                <div class="leaderboard-name">InvestSmart</div>
+                            </div>
+                            <div class="leaderboard-level">387 Posts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>

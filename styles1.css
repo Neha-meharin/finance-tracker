@@ -1,0 +1,353 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    background-color: #1e1e28;
+    color: #ffffff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #8c52ff;
+    border-bottom: 3px solid #8c52ff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8c52ff;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #8c52ff;
+    margin-right: 10px;
+}
+
+.xp-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.xp-text {
+    font-size: 0.6rem;
+    margin-bottom: 2px;
+}
+
+.xp-progress {
+    width: 100px;
+    height: 8px;
+    background-color: #2a2a36;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #4b4b4b;
+}
+
+#xp-fill {
+    height: 100%;
+    width: 10%;
+    background-color: #8c52ff;
+    transition: width 0.5s ease-in-out;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.box {
+    background-color: #292836;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #3e3b4f;
+}
+
+h2 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #8c52ff;
+}
+
+.challenges h2, .roadmap h2, .features h2 {
+    border-bottom: 2px solid #3e3b4f;
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+}
+
+.features li {
+    margin: 12px 0;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.features li:hover {
+    color: #8c52ff;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Level roadmap styling */
+.level-progress {
+    margin: 30px 0;
+    position: relative;
+}
+
+.level-track {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.level-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.level-point.achieved {
+    opacity: 1;
+}
+
+.level-marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2a2a36;
+    border: 2px solid #8c52ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.level-point.achieved .level-marker {
+    background-color: #8c52ff;
+    box-shadow: 0 0 10px #8c52ff;
+}
+
+.level-point span {
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.progress-line {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background-color: #2a2a36;
+    z-index: 1;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #8c52ff;
+    box-shadow: 0 0 5px #8c52ff;
+    transition: width 0.5s ease-in-out;
+}
+
+.level-rewards {
+    margin-top: 30px;
+    background-color: #1e1e28;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.level-rewards h3 {
+    font-size: 0.8rem;
+    color: #8c52ff;
+    margin-bottom: 10px;
+}
+
+.level-rewards ul {
+    font-size: 0.6rem;
+}
+
+.level-rewards li {
+    margin: 8px 0;
+    padding-left: 15px;
+    position: relative;
+}
+
+.level-rewards li::before {
+    content: "🎁";
+    position: absolute;
+    left: 0;
+}
+
+/* Challenge styling */
+.challenge-item {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #1e1e28;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.challenge-item:hover {
+    background-color: #26263a;
+}
+
+.challenge-item input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    background-color: #2a2a36;
+    border: 2px solid #8c52ff;
+    border-radius: 4px;
+    position: relative;
+}
+
+.challenge-item input[type="checkbox"]:checked {
+    background-color: #8c52ff;
+}
+
+.challenge-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    top: -2px;
+    left: 3px;
+}
+
+.challenge-item label {
+    flex-grow: 1;
+    font-size: 0.6rem;
+    cursor: pointer;
+}
+
+.challenge-reward {
+    font-size: 0.6rem;
+    color: #ffc857;
+    padding: 3px 6px;
+    background-color: rgba(255, 200, 87, 0.2);
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.challenge-item.completed {
+    opacity: 0.6;
+}
+
+.challenge-item.completed label {
+    text-decoration: line-through;
+}
+
+.pixel-button {
+    background-color: #8c52ff;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6rem;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #6039b9;
+    transition: all 0.1s;
+}
+
+.pixel-button:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #6039b9;
+}
+
+.pixel-button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    #menu-toggle {
+        display: block;
+    }
+    
+    .logo span {
+        font-size: 0.8rem;
+    }
+    
+    .level-point span {
+        font-size: 0.45rem;
+    }
+    
+    .level-marker {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}

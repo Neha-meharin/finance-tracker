@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Insights</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="scriptinsights.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box {
+            background: #3b3e5a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>📊 Expense Insights</h2>
+        <div class="chart-container">
+            <canvas id="expenseChart"></canvas>
+        </div>
+    </div>
+</body>
+</html>

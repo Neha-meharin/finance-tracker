@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHero - Expense Tracker</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script defer src="script3.js"></script>
+    <style>
+        .container{
+            align-items: center;
+            width: 50%;           /* Set a width for the container */
+  margin: 0 auto;       /* Auto margins for horizontal centering */
+  text-align: center;
+        }
+        .expense-form {
+            background-color: #2a2a72;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 3px solid #8b5cf6;
+        }
+        
+        .expense-form input, .expense-form select {
+            padding: 8px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            background-color: #111133;
+            color: #fff;
+            border: 2px solid #8b5cf6;
+        }
+        
+        .expense-form label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .expenses-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: white;
+        }
+        
+        .expenses-table th, .expenses-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #8b5cf6;
+        }
+        
+        .expenses-table th {
+            background-color: #1a1a50;
+        }
+        
+        .expenses-table tr:nth-child(even) {
+            background-color: #2a2a72;
+        }
+        
+        .expenses-table tr:nth-child(odd) {
+            background-color: #232366;
+        }
+        
+        .expenses-table tr:hover {
+            background-color: #3a3a92;
+        }
+        
+        .delete-btn {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 10px;
+        }
+        
+        .summary-box {
+            background-color: #2a2a72;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 3px solid #8b5cf6;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        
+        .summary-item.total {
+            font-size: 1.2em;
+            border-top: 2px solid #8b5cf6;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .category-icon {
+            margin-right: 10px;
+        }
+        
+        .xp-bonus {
+            color: #27ae60;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="mario-removebg-preview.png" alt="PocketHero Logo">
+            <span>PocketHero</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index1.html">🏠 Home</a></li>
+            <li><a href="index3.html">🎮 Expense tracker</a></li>
+          
+            <li><a href="savings.html">💰 Savings</a></li>
+            <li><a href="community.html">🤝 Community</a></li>
+        </ul>
+        <div class="user-info">
+            <img src="pixel-art-drawing-vector-graphics-royalty-free-2d-coin-sprite.jpg" class="avatar" alt="User Avatar">
+            <div class="xp-bar">
+                <span class="xp-text">Level: <span id="level-value">0</span> | XP: <span id="xp-value">10</span>/<span id="xp-next-level">100</span></span>
+                <div class="xp-progress"><div id="xp-fill"></div></div>
+            </div>
+            <button id="menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="box">
+            <h2>📊 Expense Tracker</h2>
+            <p>Track your expenses to earn XP and level up your financial game!</p>
+            
+            <div class="expense-form">
+                <h3>🧮 Add New Expense</h3>
+                <form id="expense-form">
+                    <label for="expense-name">Description:</label>
+                    <input type="text" id="expense-name" placeholder="What did you spend on?" required>
+                    
+                    <label for="expense-amount">Amount ($):</label>
+                    <input type="number" id="expense-amount" min="0.01" step="0.01" placeholder="How much?" required>
+                    
+                    <label for="expense-category">Category:</label>
+                    <select id="expense-category" required>
+                        <option value="">Select a category</option>
+                        <option value="food">🍔 Food</option>
+                        <option value="transport">🚌 Transport</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="shopping">🛍️ Shopping</option>
+                        <option value="utilities">💡 Utilities</option>
+                        <option value="health">🏥 Health</option>
+                        <option value="education">📚 Education</option>
+                        <option value="other">❓ Other</option>
+                    </select>
+                    
+                    <label for="expense-date">Date:</label>
+                    <input type="date" id="expense-date" required>
+                    
+                    <button type="submit" class="pixel-button" style="margin-top: 15px;">Add Expense (+5 XP)</button>
+                </form>
+            </div>
+            
+            <div class="summary-box">
+                <h3>💰 Expense Summary</h3>
+                <div id="expense-summary">
+                    <div class="summary-item">
+                        <span>This Week:</span>
+                        <span id="this-week-total">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>This Month:</span>
+                        <span id="this-month-total">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Top Category:</span>
+                        <span id="top-category">None yet</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Expenses:</span>
+                        <span id="total-expenses">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>📝 Recent Expenses</h3>
+            <table class="expenses-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expenses-list">
+                    <!-- Expenses will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   
+</body>
+</html>
